@@ -3,7 +3,7 @@ This "my" fork of ent-ghost (https://github.com/uakfdotb/ent-ghost/tree/luna).
 Original readme
 ---------------
 
-It is licensed under the GNU GPL v3.
+This is ent-ghost. It is licensed under the GNU GPL v3.It is licensed under the GNU GPL v3.
 
 == INSTALLATION ==
 
