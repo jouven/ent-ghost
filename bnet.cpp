@@ -1284,10 +1284,10 @@ void CBNET :: BotCommand( string Message, string User, bool Whisper, bool ForceR
 		//
 		// !AUTOHOST
 		//
-
+		//allow regular admins to ".autohost"
 		else if( Command == "autohost" )
 		{
-			if( IsRootAdmin( User ) || ForceRoot )
+			if( IsRootAdmin( User ) || ForceRoot ||  IsAdmin( User ) )
 			{
 				if( Payload.empty( ) || Payload == "off" )
 				{

@@ -2,8 +2,8 @@ SHELL = /bin/sh
 SYSTEM = $(shell uname)
 C++ = g++
 CC = gcc
-DFLAGS = 
-OFLAGS = -O3 -g
+DFLAGS =
+OFLAGS = -O2 -g -march=native -flto
 LFLAGS = -L. -L../bncsutil/src/bncsutil/ -L../StormLib/stormlib/ -lbncsutil -lpthread -ldl -lz -lStorm -lmysqlclient_r -lboost_date_time -lboost_thread -lboost_system -lboost_filesystem -lgmp -lGeoIP
 CFLAGS =
 
@@ -11,7 +11,7 @@ ifeq ($(SYSTEM),Darwin)
 DFLAGS += -D__APPLE__
 OFLAGS += -flat_namespace
 else
-LFLAGS += -lrt
+LFLAGS += -lrt -flto
 endif
 
 ifeq ($(SYSTEM),FreeBSD)

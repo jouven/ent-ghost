@@ -58,17 +58,21 @@ bool CBNCSUtilInterface :: HELP_SID_AUTH_CHECK( bool TFT, string war3Path, strin
 	// set m_EXEVersion, m_EXEVersionHash, m_EXEInfo, m_InfoROC, m_InfoTFT
 
 	string FileWar3EXE = war3Path + "war3.exe";
-	string FileStormDLL = war3Path + "Storm.dll";
+	//in the 1.29 game.dll and Storm.dll
+	//were removed so, comment the code
+	//that check for them
+	//string FileStormDLL = war3Path + "Storm.dll";
 
-	if( !UTIL_FileExists( FileStormDLL ) )
-		FileStormDLL = war3Path + "storm.dll";
+	//if( !UTIL_FileExists( FileStormDLL ) )
+	//	FileStormDLL = war3Path + "storm.dll";
 
-	string FileGameDLL = war3Path + "game.dll";
+	//string FileGameDLL = war3Path + "game.dll";
 	bool ExistsWar3EXE = UTIL_FileExists( FileWar3EXE );
-	bool ExistsStormDLL = UTIL_FileExists( FileStormDLL );
-	bool ExistsGameDLL = UTIL_FileExists( FileGameDLL );
+	//bool ExistsStormDLL = UTIL_FileExists( FileStormDLL );
+	//bool ExistsGameDLL = UTIL_FileExists( FileGameDLL );
+	const char* filesTmp[] = {FileWar3EXE};
 
-	if( ExistsWar3EXE && ExistsStormDLL && ExistsGameDLL )
+	if(ExistsWar3EXE) //&& ExistsStormDLL && ExistsGameDLL )
 	{
 		// todotodo: check getExeInfo return value to ensure 1024 bytes was enough
 
@@ -78,7 +82,7 @@ bool CBNCSUtilInterface :: HELP_SID_AUTH_CHECK( bool TFT, string war3Path, strin
 		m_EXEInfo = buf;
 		m_EXEVersion = UTIL_CreateByteArray( EXEVersion, false );
 		unsigned long EXEVersionHash;
-		checkRevisionFlat( valueStringFormula.c_str( ), FileWar3EXE.c_str( ), FileStormDLL.c_str( ), FileGameDLL.c_str( ), extractMPQNumber( mpqFileName.c_str( ) ), (unsigned long *)&EXEVersionHash );
+		checkRevision( valueStringFormula.c_str( ), filesTmp, 1, extractMPQNumber( mpqFileName.c_str()), (unsigned long *)&EXEVersionHash );
 		m_EXEVersionHash = UTIL_CreateByteArray( (uint32_t) EXEVersionHash, false );
 		m_KeyInfoROC = CreateKeyInfo( keyROC, UTIL_ByteArrayToUInt32( clientToken, false ), UTIL_ByteArrayToUInt32( serverToken, false ) );
 
@@ -101,11 +105,11 @@ bool CBNCSUtilInterface :: HELP_SID_AUTH_CHECK( bool TFT, string war3Path, strin
 		if( !ExistsWar3EXE )
 			CONSOLE_Print( "[BNCSUI] unable to open [" + FileWar3EXE + "]" );
 
-		if( !ExistsStormDLL )
-			CONSOLE_Print( "[BNCSUI] unable to open [" + FileStormDLL + "]" );
-
-		if( !ExistsGameDLL )
-			CONSOLE_Print( "[BNCSUI] unable to open [" + FileGameDLL + "]" );
+//		if( !ExistsStormDLL )
+//			CONSOLE_Print( "[BNCSUI] unable to open [" + FileStormDLL + "]" );
+//
+//		if( !ExistsGameDLL )
+//			CONSOLE_Print( "[BNCSUI] unable to open [" + FileGameDLL + "]" );
 	}
 
 	return false;
