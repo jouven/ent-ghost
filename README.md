@@ -1,4 +1,4 @@
-This "my" fork of ent-ghost (https://github.com/uakfdotb/ent-ghost/tree/luna). 
+"My" fork of ent-ghost (https://github.com/uakfdotb/ent-ghost/tree/luna). 
 
 Original readme
 ---------------
