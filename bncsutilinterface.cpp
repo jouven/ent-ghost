@@ -70,7 +70,6 @@ bool CBNCSUtilInterface :: HELP_SID_AUTH_CHECK( bool TFT, string war3Path, strin
 	bool ExistsWar3EXE = UTIL_FileExists( FileWar3EXE );
 	//bool ExistsStormDLL = UTIL_FileExists( FileStormDLL );
 	//bool ExistsGameDLL = UTIL_FileExists( FileGameDLL );
-	const char* filesTmp[] = {FileWar3EXE};
 
 	if(ExistsWar3EXE) //&& ExistsStormDLL && ExistsGameDLL )
 	{
@@ -82,6 +81,7 @@ bool CBNCSUtilInterface :: HELP_SID_AUTH_CHECK( bool TFT, string war3Path, strin
 		m_EXEInfo = buf;
 		m_EXEVersion = UTIL_CreateByteArray( EXEVersion, false );
 		unsigned long EXEVersionHash;
+                const char* filesTmp[] = {FileWar3EXE.c_str()};
 		checkRevision( valueStringFormula.c_str( ), filesTmp, 1, extractMPQNumber( mpqFileName.c_str()), (unsigned long *)&EXEVersionHash );
 		m_EXEVersionHash = UTIL_CreateByteArray( (uint32_t) EXEVersionHash, false );
 		m_KeyInfoROC = CreateKeyInfo( keyROC, UTIL_ByteArrayToUInt32( clientToken, false ), UTIL_ByteArrayToUInt32( serverToken, false ) );
